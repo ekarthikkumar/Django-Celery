@@ -19,23 +19,21 @@ APScheduler and Django Celery Setup
 CELERY DOCS
 -----------
 
-*install RabbitMQ*
+**install RabbitMQ**
 
     sudo apt-get install rabbitmq-server
 
 When the command completes the broker is already running in the background, ready to move messages for you: Starting rabbitmq-server: SUCCESS.
 
-`start and stop rabbitmq`
+**start and stop rabbitmq**
 
-    sudo invoke-rc.d rabbitmq-server start
+    `sudo invoke-rc.d rabbitmq-server start` and `sudo invoke-rc.d rabbitmq-server stop`
 
-    sudo invoke-rc.d rabbitmq-server stop
-
-`install django-celery`
+**install django-celery**
 
     pip install django-celery
 
-`edit setting.py`
+**edit setting.py**
 
     
     import djcelery
@@ -44,17 +42,17 @@ When the command completes the broker is already running in the background, read
 
     BROKER_URL = 'amqp://guest:guest@localhost:5672/'
 
-add it to installed_apps ie     'djcelery',
+add it to installed_apps ie `'djcelery'`,
 
 
-`create a new app:`
+**create a new app:**
 
     django-admin.py startapp tt
 
 add it to installed_apps
 
 
-`add tasks.py file to app tt`
+**add tasks.py file to app tt**
 
 
     import celery
@@ -71,18 +69,9 @@ add it to installed_apps
         return 0
 
 
-to work `periodic_task` you must run 
+to work *periodic_task* you must run `python manage.py celery beat` or `python manage.py celeryd -B -l DEBUG`
 
-    python manage.py celery beat
-
-or
-
-    python manage.py celeryd -B -l DEBUG
-
-
-to work `task` you must run
-
-    python manage.py celery worker --loglevel=info
+to work *task* you must run `python manage.py celery worker --loglevel=info`
 
 
 **testing**
@@ -98,14 +87,15 @@ to work `task` you must run
 
 **Running the worker as a daemon**
 
-*install init.d script: celeryd*
+**install init.d script: celeryd**
 
  - copy the file celeryd(https://github.com/celery/celery/blob/3.0/extra/generic-init.d/celeryd) and pasted it in folder `/etc/init.d/`
 
  - created a configuration file celeryd in folder `/etc/default/`
 
 
-config file (celeryd) in folder /etc/default
+config file (celeryd) in folder `/etc/default`
+
 
     CELERYD_NODES="w1"
     # or we could have three nodes:
@@ -143,14 +133,3 @@ config file (celeryd) in folder /etc/default
  - to start run `sudo /etc/init.d/celeryd start`
  - to stop run `sudo /etc/init.d/celeryd stop`
  - more CELERYD_OPTS (http://docs.celeryproject.org/en/latest/reference/celery.bin.celeryd.html)
-
-
-**Askbot**
-
-
-*clone askbot and install dependencies*
-
-
-    $ git clone git://github.com/ASKBOT/askbot-devel.git forum
-    $ mkvirtualenv forumenv
-    $ python setup.py develop  #the develop option will install the dependencies and will not copy the askbot to sitepackages.
