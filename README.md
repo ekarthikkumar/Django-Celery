@@ -18,7 +18,7 @@ APScheduler and Django Celery Setup
 
 **CELERY DOCS**
 
-`install RabbitMQ`
+*install RabbitMQ*
 
     sudo apt-get install rabbitmq-server
 
@@ -97,13 +97,11 @@ to work `task` you must run
 
 **Running the worker as a daemon**
 
-`install init.d script: celeryd`
+*install init.d script: celeryd*
 
- - copy the file celeryd(https://github.com/celery/celery/blob/3.0/extra/generic-init.d/celeryd) and pasted it in folder
+ - copy the file celeryd(https://github.com/celery/celery/blob/3.0/extra/generic-init.d/celeryd) and pasted it in folder `/etc/init.d/`
 
-     /etc/init.d/
-
- - created a configuration file celeryd in folder /etc/default/
+ - created a configuration file celeryd in folder `/etc/default/`
 
 
 config file (celeryd) in folder /etc/default
@@ -141,15 +139,15 @@ config file (celeryd) in folder /etc/default
 
 
 
- - to start run sudo /etc/init.d/celeryd start
- - to stop run sudo /etc/init.d/celeryd stop
+ - to start run `sudo /etc/init.d/celeryd start`
+ - to stop run `sudo /etc/init.d/celeryd stop`
  - more CELERYD_OPTS (http://docs.celeryproject.org/en/latest/reference/celery.bin.celeryd.html)
 
 
 **Askbot**
 
 
-`clone askbot and install dependencies`
+*clone askbot and install dependencies*
 
 
     $ git clone git://github.com/ASKBOT/askbot-devel.git forum
