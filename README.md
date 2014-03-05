@@ -16,7 +16,8 @@ APScheduler and Django Celery Setup
     >>> sc.add_cron_job(job_function,month='7',day='24',hour='10',minute=50)
 
 
-**CELERY DOCS**
+CELERY DOCS
+-----------
 
 *install RabbitMQ*
 
