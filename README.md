@@ -27,7 +27,7 @@ When the command completes the broker is already running in the background, read
 
 **start and stop rabbitmq**
 
-    `sudo invoke-rc.d rabbitmq-server start` and `sudo invoke-rc.d rabbitmq-server stop`
+`sudo invoke-rc.d rabbitmq-server start` and `sudo invoke-rc.d rabbitmq-server stop`
 
 **install django-celery**
 
@@ -67,6 +67,17 @@ add it to installed_apps
         x=wells().save()
         print ('good 1minutes passed.')
         return 0
+
+
+for example
+
+    from datetime import datetime,timedelta
+    from celery.decorators import periodic_task
+    @periodic_task(run_every=timedelta(hours=24))
+    def my_task():
+        print "Hello World"
+
+        
 
 
 to work *periodic_task* you must run `python manage.py celery beat` or `python manage.py celeryd -B -l DEBUG`
